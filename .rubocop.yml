@@ -16,6 +16,12 @@ Style/NumericPredicate:
 Layout/HeredocIndentation:
   Enabled: false
 
+Lint/EmptyClass:
+  Enabled: false
+
+Style/EmptyClassDefinition:
+  Enabled: false
+
 Naming/MethodName:
   Exclude:
     - "spec/code_object_spec.rb"
