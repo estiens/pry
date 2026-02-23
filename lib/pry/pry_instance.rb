@@ -49,10 +49,10 @@ class Pry
   attr_reader :config
 
   def_delegators(
-    :@config, :input, :input=, :output, :output=, :commands,
+    :@config, :input, :input=, :output=, :commands,
     :commands=, :print, :print=, :exception_handler, :exception_handler=,
-    :hooks, :hooks=, :color, :color=, :pager, :pager=, :editor, :editor=,
-    :memory_size, :memory_size=, :extra_sticky_locals, :extra_sticky_locals=
+    :hooks, :hooks=, :color, :color=, :pager=, :editor, :editor=,
+    :extra_sticky_locals, :extra_sticky_locals=
   )
 
   EMPTY_COMPLETIONS = [].freeze
@@ -182,14 +182,12 @@ class Pry
     end
   end
 
-  undef :memory_size if method_defined? :memory_size
   # @return [Integer] The maximum amount of objects remembered by the inp and
   #   out arrays. Defaults to 100.
   def memory_size
     @output_ring.max_size
   end
 
-  undef :memory_size= if method_defined? :memory_size=
   def memory_size=(size)
     @input_ring = Pry::Ring.new(size)
     @output_ring = Pry::Ring.new(size)
@@ -493,7 +491,6 @@ class Pry
     prompt_stack.size > 1 ? prompt_stack.pop : prompt
   end
 
-  undef :pager if method_defined? :pager
   # Returns the currently configured pager
   # @example
   #   pry_instance.pager.page text
@@ -501,7 +498,6 @@ class Pry
     Pry::Pager.new(self)
   end
 
-  undef :output if method_defined? :output
   # Returns an output device
   # @example
   #   pry_instance.output.puts "ohai!"
